@@ -3,62 +3,71 @@ package com.example.weka_heart.entities;
 public class PatientPrediction {
 
     private int id;
-    private String nombre;
     private String resultado;
-    private String advice; // <<--- NUEVO CAMPO
+    private String advice;
 
-    private int age;
-    private int sex;
-    private int chestPainType;
-    private int restingBloodPressure;
-    private int serumCholesterol;
-    private int fastingBloodSugar;
-    private int restingECG;
-    private int maximumHeartRate;
-    private int exerciseInducedAngina;
-    private double oldpeak;
-    private int slope;
-    private int numberOfMajorVessels;
-    private int thalassemia;
+    private String age;
+    private String sex;
+    private String histologicType;
+    private String degreeOfDifferentiation;
+    private String bone;
+    private String boneMarrow;
+    private String lung;
+    private String pleura;
+    private String peritoneum;
+    private String liver;
+    private String brain;
+    private String skin;
+    private String neck;
+    private String supraclavicular;
+    private String axillar;
+    private String mediastinum;
+    private String abdominal;
 
-    public PatientPrediction(int id, String nombre, String resultado, String advice, PredictionRequest request) {
+    public PatientPrediction(int id, String resultado, String advice, PredictionRequest request) {
         this.id = id;
-        this.nombre = nombre;
         this.resultado = resultado;
         this.advice = advice;
 
         this.age = request.getAge();
         this.sex = request.getSex();
-        this.chestPainType = request.getChestPainType();
-        this.restingBloodPressure = request.getRestingBloodPressure();
-        this.serumCholesterol = request.getSerumCholesterol();
-        this.fastingBloodSugar = request.getFastingBloodSugar();
-        this.restingECG = request.getRestingECG();
-        this.maximumHeartRate = request.getMaximumHeartRate();
-        this.exerciseInducedAngina = request.getExerciseInducedAngina();
-        this.oldpeak = request.getOldpeak();
-        this.slope = request.getSlope();
-        this.numberOfMajorVessels = request.getNumberOfMajorVessels();
-        this.thalassemia = request.getThalassemia();
+        this.histologicType = request.getHistologicType();
+        this.degreeOfDifferentiation = request.getDegreeOfDifferentiation();
+        this.bone = request.getBone();
+        this.boneMarrow = request.getBoneMarrow();
+        this.lung = request.getLung();
+        this.pleura = request.getPleura();
+        this.peritoneum = request.getPeritoneum();
+        this.liver = request.getLiver();
+        this.brain = request.getBrain();
+        this.skin = request.getSkin();
+        this.neck = request.getNeck();
+        this.supraclavicular = request.getSupraclavicular();
+        this.axillar = request.getAxillar();
+        this.mediastinum = request.getMediastinum();
+        this.abdominal = request.getAbdominal();
     }
 
     // Getters
     public int getId() { return id; }
-    public String getNombre() { return nombre; }
     public String getResultado() { return resultado; }
-    public String getAdvice() { return advice; } // <<--- NUEVO GETTER
+    public String getAdvice() { return advice; }
 
-    public int getAge() { return age; }
-    public int getSex() { return sex; }
-    public int getChestPainType() { return chestPainType; }
-    public int getRestingBloodPressure() { return restingBloodPressure; }
-    public int getSerumCholesterol() { return serumCholesterol; }
-    public int getFastingBloodSugar() { return fastingBloodSugar; }
-    public int getRestingECG() { return restingECG; }
-    public int getMaximumHeartRate() { return maximumHeartRate; }
-    public int getExerciseInducedAngina() { return exerciseInducedAngina; }
-    public double getOldpeak() { return oldpeak; }
-    public int getSlope() { return slope; }
-    public int getNumberOfMajorVessels() { return numberOfMajorVessels; }
-    public int getThalassemia() { return thalassemia; }
+    public String getAge() { return age; }
+    public String getSex() { return sex; }
+    public String getHistologicType() { return histologicType; }
+    public String getDegreeOfDifferentiation() { return degreeOfDifferentiation; }
+    public String getBone() { return bone; }
+    public String getBoneMarrow() { return boneMarrow; }
+    public String getLung() { return lung; }
+    public String getPleura() { return pleura; }
+    public String getPeritoneum() { return peritoneum; }
+    public String getLiver() { return liver; }
+    public String getBrain() { return brain; }
+    public String getSkin() { return skin; }
+    public String getNeck() { return neck; }
+    public String getSupraclavicular() { return supraclavicular; }
+    public String getAxillar() { return axillar; }
+    public String getMediastinum() { return mediastinum; }
+    public String getAbdominal() { return abdominal; }
 }

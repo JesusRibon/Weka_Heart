@@ -1,62 +1,73 @@
 package com.example.weka_heart.entities;
 
 public class PredictionRequest {
+    private String age;
+    private String sex;
+    private String histologicType;
+    private String degreeOfDifferentiation;
+    private String bone;
+    private String boneMarrow;
+    private String lung;
+    private String pleura;
+    private String peritoneum;
+    private String liver;
+    private String brain;
+    private String skin;
+    private String neck;
+    private String supraclavicular;
+    private String axillar;
+    private String mediastinum;
+    private String abdominal;
 
-    private String nombre;
-    private int age;
-    private int sex;
-    private int chestPainType;
-    private int restingBloodPressure;
-    private int serumCholesterol;
-    private int fastingBloodSugar;
-    private int restingECG;
-    private int maximumHeartRate;
-    private int exerciseInducedAngina;
-    private double oldpeak;
-    private int slope;
-    private int numberOfMajorVessels;
-    private int thalassemia;
+    // Getters y setters
+    public String getAge() { return age; }
+    public void setAge(String age) { this.age = age; }
 
-    // Getters y Setters
-    public String getNombre() { return nombre; }
-    public void setNombre(String nombre) { this.nombre = nombre; }
+    public String getSex() { return sex; }
+    public void setSex(String sex) { this.sex = sex; }
 
-    public int getAge() { return age; }
-    public void setAge(int age) { this.age = age; }
+    public String getHistologicType() { return histologicType; }
+    public void setHistologicType(String histologicType) { this.histologicType = histologicType; }
 
-    public int getSex() { return sex; }
-    public void setSex(int sex) { this.sex = sex; }
+    public String getDegreeOfDifferentiation() { return degreeOfDifferentiation; }
+    public void setDegreeOfDifferentiation(String degreeOfDifferentiation) { this.degreeOfDifferentiation = degreeOfDifferentiation; }
 
-    public int getChestPainType() { return chestPainType; }
-    public void setChestPainType(int chestPainType) { this.chestPainType = chestPainType; }
+    public String getBone() { return bone; }
+    public void setBone(String bone) { this.bone = bone; }
 
-    public int getRestingBloodPressure() { return restingBloodPressure; }
-    public void setRestingBloodPressure(int restingBloodPressure) { this.restingBloodPressure = restingBloodPressure; }
+    public String getBoneMarrow() { return boneMarrow; }
+    public void setBoneMarrow(String boneMarrow) { this.boneMarrow = boneMarrow; }
 
-    public int getSerumCholesterol() { return serumCholesterol; }
-    public void setSerumCholesterol(int serumCholesterol) { this.serumCholesterol = serumCholesterol; }
+    public String getLung() { return lung; }
+    public void setLung(String lung) { this.lung = lung; }
 
-    public int getFastingBloodSugar() { return fastingBloodSugar; }
-    public void setFastingBloodSugar(int fastingBloodSugar) { this.fastingBloodSugar = fastingBloodSugar; }
+    public String getPleura() { return pleura; }
+    public void setPleura(String pleura) { this.pleura = pleura; }
 
-    public int getRestingECG() { return restingECG; }
-    public void setRestingECG(int restingECG) { this.restingECG = restingECG; }
+    public String getPeritoneum() { return peritoneum; }
+    public void setPeritoneum(String peritoneum) { this.peritoneum = peritoneum; }
 
-    public int getMaximumHeartRate() { return maximumHeartRate; }
-    public void setMaximumHeartRate(int maximumHeartRate) { this.maximumHeartRate = maximumHeartRate; }
+    public String getLiver() { return liver; }
+    public void setLiver(String liver) { this.liver = liver; }
 
-    public int getExerciseInducedAngina() { return exerciseInducedAngina; }
-    public void setExerciseInducedAngina(int exerciseInducedAngina) { this.exerciseInducedAngina = exerciseInducedAngina; }
+    public String getBrain() { return brain; }
+    public void setBrain(String brain) { this.brain = brain; }
 
-    public double getOldpeak() { return oldpeak; }
-    public void setOldpeak(double oldpeak) { this.oldpeak = oldpeak; }
+    public String getSkin() { return skin; }
+    public void setSkin(String skin) { this.skin = skin; }
 
-    public int getSlope() { return slope; }
-    public void setSlope(int slope) { this.slope = slope; }
+    public String getNeck() { return neck; }
+    public void setNeck(String neck) { this.neck = neck; }
 
-    public int getNumberOfMajorVessels() { return numberOfMajorVessels; }
-    public void setNumberOfMajorVessels(int numberOfMajorVessels) { this.numberOfMajorVessels = numberOfMajorVessels; }
+    public String getSupraclavicular() { return supraclavicular; }
+    public void setSupraclavicular(String supraclavicular) { this.supraclavicular = supraclavicular; }
 
-    public int getThalassemia() { return thalassemia; }
-    public void setThalassemia(int thalassemia) { this.thalassemia = thalassemia; }
+    public String getAxillar() { return axillar; }
+    public void setAxillar(String axillar) { this.axillar = axillar; }
+
+    public String getMediastinum() { return mediastinum; }
+    public void setMediastinum(String mediastinum) { this.mediastinum = mediastinum; }
+
+    public String getAbdominal() { return abdominal; }
+    public void setAbdominal(String abdominal) { this.abdominal = abdominal; }
 }
