@@ -29,7 +29,7 @@ public class PredictionService {
     private List<PatientPrediction> predictionResults = new ArrayList<>();
     private int currentId = 1;
 
-    private String apiKey = "Bearer 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";
+    private String apiKey = "Bearer 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";
 
     public PredictionService() {
         try {
