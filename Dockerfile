@@ -6,13 +6,20 @@ WORKDIR /root
 
 COPY ./pom.xml /root
 COPY ./.mvn /root/.mvn
-COPY ./mvnw /root
-COPY ./mvnw.cmd /root
+COPY ./mvnw /root/mvnw
+COPY ./mvnw.cmd /root/mvnw.cmd
 
-RUN ./mvnw dependency:go-offline
+# 🔐 Otorgar permisos de ejecución a mvnw
+RUN chmod +x /root/mvnw
 
+# 🔄 Descargar dependencias sin construir aún
+RUN /root/mvnw dependency:go-offline
+
+# 📁 Copiar el código fuente
 COPY ./src /root/src
 
-RUN ./mvnw clean install -DskipTests
+# ⚙️ Compilar la aplicación sin ejecutar tests
+RUN /root/mvnw clean install -DskipTests
 
-ENTRYPOINT ["java","-jar","/root/target/weka_heart-0.0.1-SNAPSHOT.jar"]
+# 🚀 Ejecutar la aplicación
+ENTRYPOINT ["java", "-jar", "/root/target/weka_heart-0.0.1-SNAPSHOT.jar"]
