@@ -29,7 +29,8 @@ public class PredictionService {
     private List<PatientPrediction> predictionResults = new ArrayList<>();
     private int currentId = 1;
 
-    private String apiKey = "Bearer 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";
+    // Cambia esta variable por tu API key de Groq
+    private String apiKey = "Bearer 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";
 
     public PredictionService() {
         try {
@@ -87,7 +88,7 @@ public class PredictionService {
             }
 
             String prediction = "Predicción: " + translateClass(predictedClass);
-            String advice = getAdviceFromAI(predictedClass);
+            String advice = getAdviceFromGroqAI(predictedClass);
 
             PatientPrediction predictionResult = new PatientPrediction(
                     currentId++,
@@ -199,7 +200,7 @@ public class PredictionService {
         return new ArrayList<>(predictionResults);
     }
 
-    private String getAdviceFromAI(String predictedClass) {
+    private String getAdviceFromGroqAI(String predictedClass) {
         try {
             OkHttpClient client = new OkHttpClient();
 
@@ -207,52 +208,55 @@ public class PredictionService {
             String prompt = "Actúas como un médico oncólogo. Un paciente ha sido diagnosticado con " +
                     translatedClass + ". Proporciona recomendaciones médicas específicas para este tipo de tumor.";
 
+            // Construir el cuerpo de la solicitud según la API de Groq
             JSONObject json = new JSONObject();
-            json.put("model", "gpt-3.5-turbo");
-
             JSONArray messages = new JSONArray();
-            messages.put(new JSONObject()
-                    .put("role", "user")
-                    .put("content", prompt)
-            );
+            JSONObject userMessage = new JSONObject();
+            userMessage.put("role", "user");
+            userMessage.put("content", prompt);
+            messages.put(userMessage);
             json.put("messages", messages);
+            json.put("model", "llama-3.3-70b-versatile"); // Modelo compatible según la documentación
+            json.put("max_tokens", 300);
+            json.put("temperature", 0.7);
 
-            RequestBody body = RequestBody.create(MediaType.parse("application/json"), json.toString());
+            RequestBody body = RequestBody.create(json.toString(), MediaType.parse("application/json"));
 
             Request request = new Request.Builder()
-                    .url("https://openrouter.ai/api/v1/chat/completions")
-                    .post(body)
+                    .url("https://api.groq.com/openai/v1/chat/completions") // Endpoint correcto según la documentación
                     .addHeader("Authorization", apiKey)
                     .addHeader("Content-Type", "application/json")
+                    .post(body)
                     .build();
 
             Response response = client.newCall(request).execute();
 
             if (!response.isSuccessful()) {
-                throw new RuntimeException("Error al contactar OpenRouter: " + response);
+                throw new RuntimeException("Error al contactar Groq AI: " + response);
             }
 
             ResponseBody responseBody = response.body();
             if (responseBody == null) {
-                throw new RuntimeException("Respuesta de OpenRouter vacía.");
+                throw new RuntimeException("Respuesta de Groq AI vacía.");
             }
 
             String responseString = responseBody.string();
-            JSONObject jsonObject = new JSONObject(responseString);
-            JSONArray choicesArray = jsonObject.optJSONArray("choices");
+            JSONObject jsonResponse = new JSONObject(responseString);
 
-            if (choicesArray == null || choicesArray.isEmpty()) {
-                throw new RuntimeException("No se encontraron opciones de respuesta de IA.");
+            // Extraer el contenido de la respuesta
+            JSONArray choices = jsonResponse.getJSONArray("choices");
+            if (choices.length() > 0) {
+                JSONObject message = choices.getJSONObject(0).getJSONObject("message");
+                return message.getString("content");
+            } else {
+                return "No se pudo obtener una recomendación de la IA en este momento.";
             }
 
-            JSONObject firstChoice = choicesArray.getJSONObject(0);
-            JSONObject messageObject = firstChoice.optJSONObject("message");
-
-            return messageObject != null ? messageObject.optString("content", "Sin contenido") : "Respuesta sin mensaje";
-
         } catch (Exception e) {
-            logger.error("Error al obtener consejo de IA para clase {}", predictedClass, e);
+            logger.error("Error al obtener consejo de Groq AI para clase {}", predictedClass, e);
             return "No se pudo obtener una recomendación de la IA en este momento.";
         }
     }
+
+
 }
